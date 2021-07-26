@@ -8,24 +8,22 @@ const ToastContext = createContext(null);
 const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
-  const addToast = (content, delay=5000) => {
+  const addToast = (content, delay = 5000) => {
     const id = uuid();
-      const toast = {
-        id,
-        message: content.replace('%s', id),
-        delay
-      };
-      setToasts([...toasts, toast]);
-  }
+    const toast = {
+      id,
+      message: content.replace('%s', id),
+      delay
+    };
+    setToasts([...toasts, toast]);
+  };
 
-  const removeToast = useCallback(
-    id => {
-      
-
-      setToasts(toasts => toasts.filter(t => t.id !== id));
-    },
-    [setToasts]
-  );
+  const removeToast = id => {
+    const newToasts = toasts;
+    const toastIndex = newToasts.findIndex(t => t.id === id);
+    newToasts.splice(toastIndex, 1);
+    setToasts(newToasts);
+  };
 
   return (
     <ToastContext.Provider value={{ addToast, removeToast }}>
