@@ -12,8 +12,11 @@ function Toast({ id, delay = 5500, message, style }) {
     const timer = setTimeout(() => {
       setClassname('toast-container hide-toast');
       console.log('hide toast', id);
-      removeToast(id);
     }, delay);
+
+    if (className === 'toast-container hide-toast') {
+      removeToast(id);
+    }
 
     return () => {
       clearTimeout(timer);
