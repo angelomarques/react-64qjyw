@@ -21,7 +21,7 @@ function Toast({ id, delay = 5500, message, style }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [id, removeToast, delay]);
+  }, [className]);
 
   return (
     <div className={className} style={style}>
