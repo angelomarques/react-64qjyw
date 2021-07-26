@@ -15,16 +15,21 @@ const ToastProvider = ({ children }) => {
       message: content.replace('%s', id),
       delay
     };
-    if (toasts.length === 0) setToasts([toast]);
-    else {
+    if (toasts.length === 0) {
+      setToasts([toast]);
+    } else {
       setToasts([...toasts, toast]);
     }
   };
 
   const removeToast = id => {
-    const newToasts = toasts;
+    let newToasts = toasts;
     const toastIndex = newToasts.findIndex(t => t.id === id);
-    newToasts.splice(toastIndex, 1);
+    if (newToasts.length === 1) {
+      newToasts = [];
+    } else {
+      newToasts.splice(toastIndex, 1);
+    }
     setToasts(newToasts);
   };
 
