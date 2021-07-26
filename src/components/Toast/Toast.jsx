@@ -12,7 +12,7 @@ function Toast({ id, delay = 5500, message, style }) {
     const timer = setTimeout(() => {
       setClassname('toast-container hide-toast');
       console.log('hide toast', id);
-    }, 10000);
+    }, delay);
 
     if (className === 'toast-container hide-toast') {
       removeToast(id);
