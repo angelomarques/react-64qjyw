@@ -15,7 +15,10 @@ const ToastProvider = ({ children }) => {
       message: content.replace('%s', id),
       delay
     };
-    setToasts([...toasts, toast]);
+    if (toasts.length === 0) setToasts([toast]);
+    else {
+      setToasts([...toasts, toast]);
+    }
   };
 
   const removeToast = id => {
